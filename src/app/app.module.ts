@@ -1,28 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Import FormsModule and ReactiveFormsModule
+import { RouterModule, Routes } from '@angular/router';  // Import RouterModule for routing
+
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { EmployeeService } from './services/employee.service';
+
+const routes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'employee-list', component: EmployeeListComponent },
+  { path: 'add-employee', component: AddEmployeeComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     EmployeeListComponent,
-    AddEmployeeComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    RouterModule.forRoot(routes)
   ],
-  providers: [EmployeeService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
